@@ -1,7 +1,9 @@
 package com.amazon.ata.lists;
 
 import com.amazon.ata.resources.lists.prework.Destination;
+import com.amazonaws.services.dynamodbv2.xspec.L;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,6 +12,8 @@ import java.util.List;
  * and get the total number of days that will be spent in trip.
  */
 public class Itinerary {
+    private List<Destination> itineraryList = new ArrayList<>();
+
     /**
      * Add a new destination to the end of itinerary.
      *
@@ -17,6 +21,7 @@ public class Itinerary {
      */
     public void addDestination(Destination destination) {
         // Implement the method here
+        itineraryList.add(destination);
     }
 
     /**
@@ -27,7 +32,7 @@ public class Itinerary {
      */
     public Destination getDestination(int position) {
         // Implement the method here
-        return null;
+        return itineraryList.get(position);
     }
 
     /**
@@ -38,7 +43,7 @@ public class Itinerary {
      */
     public Destination removeDestination(int position) {
         // Implement the method here
-        return null;
+        return itineraryList.remove(position);
     }
 
 
@@ -50,7 +55,11 @@ public class Itinerary {
      */
     public List<String> getListOfLocations() {
         // Implement the method here
-        return null;
+        List<String> loc = new ArrayList<>();
+        for (int i = 0; i < itineraryList.size(); i++) {
+            loc.add(itineraryList.get(i).getLocation());
+        }
+        return loc;
     }
 
     /**
@@ -61,7 +70,11 @@ public class Itinerary {
      */
     public int getTotalNumberOfDays() {
         // Implement the method here
-        return -1;
+        int days = 0;
+        for (int i = 0; i < itineraryList.size(); i++) {
+            days += itineraryList.get(i).getDaysAtLocation();
+        }
+        return days;
     }
 
     /**
@@ -71,6 +84,6 @@ public class Itinerary {
      */
     public int getNumberOfDestinations() {
         // Implement the method here
-        return -1;
+        return itineraryList.size();
     }
 }
